@@ -104,3 +104,97 @@ In contrast, a **natural key**, in the context of databases, is a primary key th
 A **foreign key** in a relational database is a column or a set of columns that establishes a link or relationship between two tables. It enforces referential integrity by ensuring that the values in the foreign key column(s) of one table match the values in the primary key column(s) of another table. In other words, it creates a connection between records in different tables, typically to represent relationships between data entities.
 
 A **composite key**, in the context of a relational database, is a key that consists of two or more columns used together to uniquely identify a record or row within a table. Unlike a single-column primary key, which uses a single attribute to uniquely identify records, a composite key relies on the combination of multiple attributes (columns) to achieve uniqueness.
+
+**Data Types**
+These are basic and most common datatypes used in SQL:
+```sql
+INT -- Whole Numbers
+DECIMAL (M, N) -- Decimal Numbers - Exact Value
+VARCHAR (1) -- String of text of length 1
+BLOB -- Binary Large Object, Stores large data
+DATE --'YVYY-MM-DD'
+TIMESTAMP --'YVY-MM-DD H:MM:SS'
+```
+# MySQL Mac Installation
+First, download and instal MySQL from `Download MySQL Community Server` webpage. Then run this command:
+```bash
+brew install mysql
+```
+Now, MySQL database is installed without a root password. To secure it run:
+```bash
+mysql_secure_installation
+```
+Now, securing the MySQL server is started. Please provide a unique password and remember it for your future usage.
+After seeting the password, it asks you several questions for configurating MySQL. Press y|Y for Yes, any other key for No.
+
+When all is done, run:
+```bash
+mysql -u root -p
+```
+Enter the unique password to see a message like this:
+```bash
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.34 MySQL Community Server - GPL
+```
+Now, you should see `[mysql>]` at the left side of terminal line which indicates you can run SQL codes. For testing the sanity of your installment, run:
+```bash
+SHOW DATABASES;
+```
+to see the default databases on your Mac:
+```bash
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+```
+Now, you can add your specific dataset by running:
+```bash
+CREATE DATABASE myDatabase;
+```
+which returns `Query OK, 1 row affected (0.00 sec)`. Now, by running `SHOW DATABASES;` you will see your dataset is added to the list.
+
+You also can instal **MySQL Workbench** if you prefer to run SQL codes in IDE-like environment rather than terminal. MySQL Workbench is a visual database design and administration tool for MySQL, a popular open-source relational database management system (RDBMS). It provides a comprehensive set of features for database developers, database administrators, and data architects.
+
+# Main Tutorial
+Now, we want to creat this table:
+![Alt text](resources/image.png)
+```sql
+-- Create the database
+CREATE DATABASE myDatabase;
+
+-- Switch to the newly created database
+USE myDatabase;
+
+-- Create the "student" table
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    major VARCHAR(255)
+);
+
+DESCRIBE student;
+```
+Now, we will see:
+```bash
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| student_id | int          | NO   | PRI | NULL    |       |
+| name       | varchar(255) | YES  |     | NULL    |       |
+| major      | varchar(255) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+```
+To delete this table:
+```sql
+-- Delete the "student" table
+DROP TABLE student;
+```
+
+
+
