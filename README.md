@@ -153,6 +153,7 @@ to see the default databases on your Mac:
 +--------------------+
 4 rows in set (0.01 sec)
 ```
+# Initializing and Managing Tables
 Now, you can add your specific dataset by running:
 ```bash
 CREATE DATABASE myDatabase;
@@ -195,6 +196,17 @@ To delete this table:
 -- Delete the "student" table
 DROP TABLE student;
 ```
-
+If we want to add another column `gpa`, we have to run:
+```sql
+-- Add the "gpa" column to the "student" table
+ALTER TABLE student
+ADD gpa DECIMAL(3, 2);
+```
+If we want to delete a column, e.g., `gpa`, we have to run:
+```sql
+ALTER TABLE student
+DROP COLUMN gpa;
+```
+# Adding Data to Tables
 
 
